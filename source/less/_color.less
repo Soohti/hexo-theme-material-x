@@ -3,9 +3,9 @@
 @theme_background: #F4F4F4;
 // @theme_background: #454545; // 暗色主题
 // 主题色
-@theme_main: #1BC3FB;//#1BC3FB
+@theme_main: #1BC3FB;
 // 卡片背景颜色
-@theme_cardbg: rgba(255,255,255,94%);
+@theme_cardbg: white;
 // @theme_cardbg: #555; // 暗色主题
 
 
@@ -15,7 +15,7 @@
 
 // 背景色 ----------------
 // 导航栏背景，默认和主题色保持一致
-@color_bg_navbar: fade(@theme_main, 10%);
+@color_bg_navbar: @theme_main;
 // 代码的背景色
 @color_bg_code: fade(@theme_main, 10%);
 // 代码块的背景色
