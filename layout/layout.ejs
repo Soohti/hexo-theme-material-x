@@ -2,7 +2,7 @@
 <html>
 <%- partial('_partial/head') %>
 <body>
-  <%
+	<%
   var showCover = false;
   if (theme.cover) {
     // 如果页面的Front-matter声明了cover，就取页面的值
@@ -22,15 +22,104 @@
     }
   }
   %>
-  <%- partial('_partial/cover', {showCover: showCover}) %>
-  <div class="l_body<%- showCover ? '' : ' nocover' %>">
-    <div class='body-wrapper'>
-      <%- body %>
-      <script>setLoadingBarProgress(60);</script>
-    </div>
-    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
-  </div>
-  <%- partial('_partial/scripts') %>
-  <script>setLoadingBarProgress(100);</script>
+	<%- partial('_partial/cover', {showCover: showCover}) %>
+	<div class="l_body<%- showCover ? '' : ' nocover' %>">
+		<div class='body-wrapper'>
+			<%- body %>
+			<script>setLoadingBarProgress(60);</script>
+		</div>
+		<a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+	</div>
+	<%- partial('_partial/scripts') %>
+	<script>setLoadingBarProgress(100);</script>
+
+	<script>
+		var pjax = new Pjax({
+			elements: "a",
+			selectors: [
+				"title",
+				".l_body",
+				"cover-wrapper",
+			],
+			cache: true,
+  			cacheBust: false
+		})
+		function LoadHitoKoto() {
+			fetch('https://v1.hitokoto.cn/?c=a')//加载一言
+				.then(function (res) {
+					return res.json();
+				})
+				.then(function (data) {
+					var h_content = document.getElementById('hitokoto-content');
+					var h_from = document.getElementById('hitokoto-from');
+					h_content.innerText = data.hitokoto;
+					h_from.innerText = "——" + data.from;
+				})
+				.catch(function (err) {
+					console.error(err);
+				})
+		}
+		function LoadMathJax() {renderMathInElement(document.body,
+				{
+					delimiters: [
+						{ left: "$$", right: "$$", display: true },
+						{ left: "$", right: "$", display: false }
+					]
+				}
+			);
+		}
+		function LoadFancybox() {
+			$(".article-entry").find("img").each(function () {//渲染fancy box
+				var t = document.createElement("a");
+				$(t).attr("data-fancybox", "gallery"),
+					$(t).attr("href", $(this).attr("src")),
+					$(this).wrap(t)
+			})
+		}
+		function LoadBusuanzi(){
+			$.getScript("https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js", function () {});
+		}
+		function ActiveBar(){
+			$.getScript("https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.8/js/app.js",function(){});
+		}
+		// 开始 PJAX 执行的函数
+		document.addEventListener('pjax:send', function () {
+			$(".loading").css("display", "block");//加载转圈圈的css
+			ActiveBar();
+			LoadValine();
+		});
+		// PJAX 完成之后执行的函数，可以和上面的重载放在一起
+		document.addEventListener('pjax:complete', function () {
+			$(".loading").css("display", "none");
+			LoadHitoKoto();
+			LoadFancybox();
+			LoadMathJax();
+		<% if (theme.busuanzi != false) {%>
+			LoadBusuanzi();
+		<% } %>
+			ActiveBar();
+		});
+	</script>
+
+	<% if(theme.music && theme.music.enable != false){ %>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" rel="noreferrer">
+	<% if(theme.music.own != false){ %>
+	<div id="aplayer"></div>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"
+		rel="noreferrer"></script>
+	<script type="text/javascript" src="<%= theme.music.path %>" rel="noreferrer"></script>
+	</div>
+	<% } else {%>
+	<!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+	<meting-js server="<%= theme.music.server %>" type="<%= theme.music.type %>" id="<%= theme.music.id %>" fixed=true
+		color="<%= theme.music.color %>" mode="<%= theme.music.mode %>"
+		autoplay=<%= theme.music.autoplay == "false" ? true:false %> volume=<%= theme.music.volume %>>
+	</meting-js>
+	<% } %>
+	<% } %>
 </body>
 </html>
