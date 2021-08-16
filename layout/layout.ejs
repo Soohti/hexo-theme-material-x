@@ -76,32 +76,6 @@
 					$(this).wrap(t)
 			})
 		}
-		function LoadWpac() {
-			wpac_init = window.wpac_init || [];
-			wpac_init.push({ widget: 'Rating', id: <%= theme.widget_pack.id %>});//渲染widget pack（点赞系统）
-			WIDGETPACK_LOADED = false;
-			(function () {
-				WIDGETPACK_LOADED = true;
-				var mc = document.createElement('script');
-				mc.type = 'text/javascript';
-				mc.async = true;
-				mc.src = 'https://embed.widgetpack.com/widget.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-			})();
-		}
-		function LoadIP() {
-			fetch('https://api.konnyaku.monster/v1/getip/getip.js')
-				.then(function (res) {
-					return res.json();
-				})
-				.then(function (data) {
-					var h_from = document.getElementById('ip');
-					h_from.innerText = "您的IP：" + data.clientIP;
-				})
-				.catch(function (err) {
-					console.error(err);
-				})
-		}
 		function LoadBusuanzi(){
 			$.getScript("https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js", function () {});
 		}
@@ -118,13 +92,8 @@
 		document.addEventListener('pjax:complete', function () {
 			$(".loading").css("display", "none");
 			LoadHitoKoto();
-		
-		<% if (theme.widget_pack.enable != false) {%>
-			LoadWpac();
-		<% } %>
 			LoadFancybox();
 			LoadMathJax();
-			LoadIP();
 		<% if (theme.busuanzi != false) {%>
 			LoadBusuanzi();
 		<% } %>
@@ -152,10 +121,5 @@
 	</meting-js>
 	<% } %>
 	<% } %>
-	<script>
-	  <% if (theme.latest_comments.enable != false) { %>
-			get_latest_comments("<%= theme.latest_comments.repo %>");
-	  <% } %>
-	</script>
 </body>
 </html>
