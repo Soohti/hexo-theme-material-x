@@ -59,11 +59,7 @@
   <link rel="shortcut icon" type='image/x-icon' href="<%- url_for(config.favicon) %>">
   <% } %>
 
-  <% if (theme.info && theme.info.cdn && theme.info.cdn.css && theme.info.cdn.css.style) { %>
-    <%- css(theme.info.cdn.css.style) %>
-  <% } else { %>
-    <%- css('style.css') %>
-  <% } %>
+  <%- css('style.css') %>
 
   <% if (config.google_analytics_key) { %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
