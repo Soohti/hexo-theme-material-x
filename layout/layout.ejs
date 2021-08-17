@@ -45,7 +45,7 @@
   			cacheBust: false
 		})
 		function LoadHitoKoto() {
-			fetch('https://v1.hitokoto.cn/?c=a')//加载一言
+			fetch('https://v1.hitokoto.cn/')
 				.then(function (res) {
 					return res.json();
 				})
@@ -59,17 +59,15 @@
 					console.error(err);
 				})
 		}
-		function LoadMathJax() {renderMathInElement(document.body,
-				{
-					delimiters: [
-						{ left: "$$", right: "$$", display: true },
-						{ left: "$", right: "$", display: false }
-					]
-				}
-			);
+		function LoadMathJax() {
+			$.getScript("//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML", function() {
+				MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+				var math = document.getElementsByClassName("entry-content")[0];
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
+			});
 		}
 		function LoadFancybox() {
-			$(".article-entry").find("img").each(function () {//渲染fancy box
+			$(".article-entry").find("img").each(function () {
 				var t = document.createElement("a");
 				$(t).attr("data-fancybox", "gallery"),
 					$(t).attr("href", $(this).attr("src")),
@@ -84,9 +82,8 @@
 		}
 		// 开始 PJAX 执行的函数
 		document.addEventListener('pjax:send', function () {
-			$(".loading").css("display", "block");//加载转圈圈的css
+			NProgress.start();
 			ActiveBar();
-			LoadValine();
 		});
 		// PJAX 完成之后执行的函数，可以和上面的重载放在一起
 		document.addEventListener('pjax:complete', function () {
@@ -97,6 +94,7 @@
 		<% if (theme.busuanzi != false) {%>
 			LoadBusuanzi();
 		<% } %>
+			NProgress.done();
 			ActiveBar();
 		});
 	</script>
