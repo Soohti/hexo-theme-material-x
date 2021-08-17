@@ -248,11 +248,6 @@ var customSearch;
     setScrollAnchor();
 		// $(".article .video-container").fitVids();
 
-		setTimeout(function () {
-			$('#loading-bar-wrapper').fadeOut(500);
-		}, 300);
-
-
 		if (SEARCH_SERVICE === 'google') {
 			customSearch = new GoogleCustomSearch({
 				apiKey: GOOGLE_CUSTOM_SEARCH_API_KEY,

@@ -26,12 +26,10 @@
 	<div class="l_body<%- showCover ? '' : ' nocover' %>">
 		<div class='body-wrapper'>
 			<%- body %>
-			<script>setLoadingBarProgress(60);</script>
 		</div>
 		<a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
 	</div>
 	<%- partial('_partial/scripts') %>
-	<script>setLoadingBarProgress(100);</script>
 
 	<script>
 		var pjax = new Pjax({
@@ -87,7 +85,6 @@
 		});
 		// PJAX 完成之后执行的函数，可以和上面的重载放在一起
 		document.addEventListener('pjax:complete', function () {
-			$(".loading").css("display", "none");
 			LoadHitoKoto();
 			LoadFancybox();
 			LoadMathJax();

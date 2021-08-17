@@ -23,7 +23,6 @@ var SearchService = "";
         modal_results: "#u-search .modal-results",
         modal_metadata: "#u-search .modal-metadata",
         modal_error: "#u-search .modal-error",
-        modal_loading_bar: "#u-search .modal-loading-bar",
         modal_ajax_content: "#u-search .modal-ajax-content",
         modal_logo: '#u-search .modal-footer .logo',
         btn_close: "#u-search .btn-close",
@@ -163,32 +162,6 @@ var SearchService = "";
     };
 
     /**
-     * Start loading bar animation
-     * no param
-     */
-    self.startLoading = function() {
-      self.dom.modal_loading_bar.show();
-      self.loadingTimer = setInterval(function() {
-        self.percentLoaded = Math.min(self.percentLoaded+5,95);
-        self.dom.modal_loading_bar.css('width', self.percentLoaded+'%');
-      }, 100);
-    };
-
-    /**
-     * Stop loading bar animation
-     * no param
-     */
-    self.stopLoading = function() {
-      clearInterval(self.loadingTimer);
-      self.dom.modal_loading_bar.css('width', '100%');
-      self.dom.modal_loading_bar.fadeOut();
-      setTimeout(function() {
-        self.percentLoaded = 0;
-        self.dom.modal_loading_bar.css('width', '0%');
-      }, 300);
-    };
-
-    /**
      * Add service branding
      * @param service {String} service name
      */
@@ -233,7 +206,7 @@ var SearchService = "";
     self.init();
   };
 
-  var template = '<div id="u-search"><div class="modal"> <header class="modal-header" class="clearfix"><form id="u-search-modal-form" class="u-search-form" name="uSearchModalForm"> <input type="text" id="u-search-modal-input" class="u-search-input" /> <button type="submit" id="u-search-modal-btn-submit" class="u-search-btn-submit"> <span class="fas fa-search"></span> </button></form> <a class="btn-close"> <span class="fas fa-times"></span> </a><div class="modal-loading"><div class="modal-loading-bar"></div></div> </header> <main class="modal-body"><ul class="modal-results modal-ajax-content"></ul> </main> <footer class="modal-footer clearfix"><div class="modal-metadata modal-ajax-content"> <strong class="range"></strong> of <strong class="total"></strong></div><div class="modal-error"></div> <div class="logo"></div> <a class="nav btn-next modal-ajax-content"> <span class="text">NEXT</span> <span class="fas fa-chevron-right"></span> </a> <a class="nav btn-prev modal-ajax-content"> <span class="fas fa-chevron-left"></span> <span class="text">PREV</span> </a> </footer></div><div class="modal-overlay"></div></div>';
+  var template = '<div id="u-search"><div class="modal"> <header class="modal-header" class="clearfix"><form id="u-search-modal-form" class="u-search-form" name="uSearchModalForm"> <input type="text" id="u-search-modal-input" class="u-search-input" /> <button type="submit" id="u-search-modal-btn-submit" class="u-search-btn-submit"> <span class="fas fa-search"></span> </button></form> <a class="btn-close"> <span class="fas fa-times"></span> </a> </header> <main class="modal-body"><ul class="modal-results modal-ajax-content"></ul> </main> <footer class="modal-footer clearfix"><div class="modal-metadata modal-ajax-content"> <strong class="range"></strong> of <strong class="total"></strong></div><div class="modal-error"></div> <div class="logo"></div> <a class="nav btn-next modal-ajax-content"> <span class="text">NEXT</span> <span class="fas fa-chevron-right"></span> </a> <a class="nav btn-prev modal-ajax-content"> <span class="fas fa-chevron-left"></span> <span class="text">PREV</span> </a> </footer></div><div class="modal-overlay"></div></div>';
 })(jQuery);
 
 var AlgoliaSearch;
