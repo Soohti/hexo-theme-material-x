@@ -2,8 +2,7 @@
 
 一个简约的卡片式Hexo博客主题。  
 基于[xaoxuu/hexo-theme-material-x](https://github.com/volantis-x/hexo-theme-volantis/tree/1.2.7)修改而来并添加了一些功能（Pjax etc.）
-<br>
-<br>
+
 #### 完全自由的模块化、易于定制化设计
 
 - 可以自由决定每个页面是否需要封面、封面是否需要背景图片、多少图片、是否需要轮播、速度如何。
@@ -30,16 +29,14 @@
 - 支持APlayer播放器，可以播放网易云、QQ音乐、虾米、酷狗平台以及其它服务器的音乐。
 - 支持不蒜子阅读统计、百度分析、Google分析。
 - 支持渲染MathJax数学公式，优化了渲染效果。
-<br>
-<br>
+
 ## 下载安装
-<br>
 
 ### B. 手动安装
 
 1. 下载主题到 `themes/` 文件夹
 ```bash
-git clone https://github.com/xaoxuu/hexo-theme-material-x themes/material-x
+git clone https://github.com/Soohti/hexo-theme-material-x themes/material-x
 ```
 
 2. 然后安装必要的依赖包
