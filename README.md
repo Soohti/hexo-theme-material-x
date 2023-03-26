@@ -1,10 +1,9 @@
 # Material X
 
-一个简约的卡片式Hexo博客主题。
-
-![](https://img.vim-cn.com/52/a54815c02ce232f11f54b2c547c1337828833c.png)
-
-
+一个简约的卡片式Hexo博客主题。  
+基于[xaoxuu/hexo-theme-material-x](https://github.com/volantis-x/hexo-theme-volantis/tree/1.2.7)修改而来并添加了一些功能（Pjax etc.）
+<br>
+<br>
 #### 完全自由的模块化、易于定制化设计
 
 - 可以自由决定每个页面是否需要封面、封面是否需要背景图片、多少图片、是否需要轮播、速度如何。
@@ -31,40 +30,10 @@
 - 支持APlayer播放器，可以播放网易云、QQ音乐、虾米、酷狗平台以及其它服务器的音乐。
 - 支持不蒜子阅读统计、百度分析、Google分析。
 - 支持渲染MathJax数学公式，优化了渲染效果。
-
-
-
 <br>
-
-## 博客示例
-
-| 博客                                | 源码                                   | 说明               |
-| ----------------------------------- | -------------------------------------- | ------------------ |
-| [@mxclub](https://mxclub.github.io) | https://github.com/xaoxuu/blog-example | master分支默认效果 |
-| [@xaoxuu](https://xaoxuu.com)       | 暂未开源                               | myblog分支效果     |
-
-
-- **更多示例请见 [#示例博客](https://xaoxuu.com/wiki/material-x/examples)**
-
-
-
 <br>
-
 ## 下载安装
-
-### A. 使用脚本全自动安装（目前仅支持macOS）
-
-1. 打开终端输入下面命令安装脚本，脚本文档见[#hexo.sh](https://xaoxuu.com/wiki/hexo.sh/)。
-```bash
-curl -s https://xaoxuu.com/install | sh -s hexo.sh
-```
-
-2. 安装成功后，在你的博客路径打开终端，输入下面命令即可安装主题和依赖包。
-```bash
-hexo.sh i x
-```
-
-
+<br>
 
 ### B. 手动安装
 
@@ -77,11 +46,3 @@ git clone https://github.com/xaoxuu/hexo-theme-material-x themes/material-x
 ```bash
 npm i -S hexo-generator-search hexo-generator-json-content hexo-renderer-less
 ```
-
-
-
-<br>
-
-## 文档
-
-https://xaoxuu.com/wiki/material-x/
